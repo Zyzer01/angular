@@ -1,5 +1,4 @@
 import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
-import { WishItem } from '../shared/model/wishItem';
 import { Component } from '@angular/core';
 import { RoomsComponent } from "./rooms/rooms.component";
 

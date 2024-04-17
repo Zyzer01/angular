@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Rooms, RoomList } from './rooms';
 import { CommonModule } from '@angular/common';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 
 @Component({
-  selector: 'app-rooms',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './rooms.component.html',
-  styleUrl: './rooms.component.css'
+    selector: 'app-rooms',
+    standalone: true,
+    templateUrl: './rooms.component.html',
+    styleUrl: './rooms.component.css',
+    imports: [CommonModule, NgbAlert, RoomsListComponent],
 })
 export class RoomsComponent {
   hotelName = "Toria's Crown"
@@ -15,8 +17,10 @@ export class RoomsComponent {
 
   hideRooms = false
 
+  heading = 'Room List'
   toggleRooms() {
     this.hideRooms = !this.hideRooms
+    this.heading = 'Yara Lists'
   }
 
   rooms: Rooms = {
@@ -57,4 +61,24 @@ export class RoomsComponent {
       rating: 4.0,
     },
   ]
+
+  selectedRoom!: RoomList
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room
+  }
+
+  addRoom() {
+    const room: RoomList = {
+      roomNumber: 4,
+      roomType: 'Odogwu room',
+      amenities: 'Air condition, Fridge, Kitchen',
+      price: 3000,
+      photos: 'https://unsplash.com/photos/a-person-standing-on-a-street-holding-an-umbrella-7l0uVeJBVeg',
+      checkInTime: new Date('12-Nov-2024'),
+      checkOutTime: new Date('12-Dec-2024'),
+      rating: 4.0,
+    }
+
+    this.roomList = [...this.roomList, room]
+  }
 }
