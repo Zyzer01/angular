@@ -1,0 +1,55 @@
+<div>
+  <h1>Welcome to {{ hotelName }}</h1>
+  <div [hidden]="hideRooms">
+    <div>
+      Number of rooms:
+      <span
+        [ngStyle]="{ color: rooms.availableRooms > 0 ? 'green' : 'red' }"
+        [innerText]="numberOfRooms"
+      ></span>
+    </div>
+  </div>
+  <button (click)="toggleRooms()">Show Room</button>
+
+  <div>
+    {{ rooms.availableRooms ?? "There are no rooms to display" }}
+  </div>
+
+  <div *ngIf="rooms.availableRooms > 0">
+    List of Rooms:
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Even/Odd</th>
+          <th>Room Number</th>
+          <th>Room Type</th>
+          <th>Amenities</th>
+          <th>Price</th>
+          <th>Checkin Time</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          [ngClass]="e ? 'even' : 'odd'"
+          *ngFor="
+            let room of roomList;
+            let e = even;
+            let o = odd;
+            let i = index
+          "
+        >
+          <td>{{ i | percent }}</td>
+          <td>{{ e ? "Even" : "Odd" }}</td>
+          <td>{{ room.roomNumber }}</td>
+          <td>{{ room.roomType }}</td>
+          <td>{{ room.amenities | titlecase }}</td>
+          <td>{{ room.price | currency : "NGN" }}</td>
+          <td>{{ room.checkInTime | date : "short" }}</td>
+          <td>{{ room.rating | number : "1.1-2" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

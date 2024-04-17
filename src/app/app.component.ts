@@ -1,13 +1,16 @@
+import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { WishItem } from '../shared/model/wishItem';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RoomsComponent } from "./rooms/rooms.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [RoomsComponent, NgSwitch, NgSwitchCase, NgSwitchDefault]
 })
 export class AppComponent {
-  title = 'hotelinventoryapp';
+
+  roles = 'admin'
 }
