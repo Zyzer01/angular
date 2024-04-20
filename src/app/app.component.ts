@@ -1,5 +1,5 @@
 import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { RoomsComponent } from "./rooms/rooms.component";
 
 @Component({
@@ -9,7 +9,16 @@ import { RoomsComponent } from "./rooms/rooms.component";
     styleUrl: './app.component.css',
     imports: [RoomsComponent, NgSwitch, NgSwitchCase, NgSwitchDefault]
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
 
   roles = 'admin'
+
+  // Dynamic components //
+  @ViewChild('user', { read: ViewContainerRef}) vcr!: ViewContainerRef;
+  
+  ngAfterViewInit(): void {
+    const componentRef = this.vcr.createComponent(RoomsComponent)
+    
+  }
+  // Dynamic components //
 }

@@ -16,14 +16,12 @@ export class RoomsListComponent implements OnChanges {
   @Input() heading: string = ''
 
 
-  ngOnChanges(changes: SimpleChanges): void {
-    
-    console.log(changes);
+  ngOnChanges(changes: SimpleChanges): void {    
+    // console.log(changes);
 
     if (changes['heading']) {
       this.heading = changes['heading'].currentValue.toUpperCase();
     }
-
   }
 
   @Output() selectedRoom = new EventEmitter<RoomList>();
