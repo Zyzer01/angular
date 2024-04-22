@@ -12,7 +12,7 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './rooms.component.css',
   imports: [CommonModule, NgbAlert, RoomsListComponent],
 })
-export class RoomsComponent implements AfterViewInit {
+export class RoomsComponent {
   hotelName = "Toria's Crown"
   numberOfRooms = 10
 
@@ -25,6 +25,7 @@ export class RoomsComponent implements AfterViewInit {
   }
 
   @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
+
 
   
   // @ngAfterViewInit() {

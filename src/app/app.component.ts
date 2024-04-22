@@ -1,5 +1,5 @@
 import { CommonModule, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
-import { AfterViewInit, Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, ViewContainerRef, viewChild } from '@angular/core';
 import { RoomsComponent } from "./rooms/rooms.component";
 
 @Component({
@@ -15,10 +15,15 @@ export class AppComponent implements AfterViewInit {
 
   // Dynamic components //
   @ViewChild('user', { read: ViewContainerRef}) vcr!: ViewContainerRef;
+
+  @ViewChild('changedText', { static: true }) changedText!: ElementRef;
+
+  
   
   ngAfterViewInit(): void {
     const componentRef = this.vcr.createComponent(RoomsComponent)
     
+    this.changedText.nativeElement.textContent = "The new"
   }
   // Dynamic components //
 }
